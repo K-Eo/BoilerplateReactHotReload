@@ -2,6 +2,7 @@ var path = require('path');
 var Config = require('webpack-config').Config;
 var webpack = require('webpack');
 var envFile = require('node-env-file');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 //	process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -18,13 +19,16 @@ module.exports = new Config().merge({
   ],
   output: {
     path: path.join(__dirname, '/public/'),
-    filename: 'bundle.js',
+    filename: '[hash].bundle.js',
     publicPath: '/'
   },
   plugins: [
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery'
+    }),
+    new HtmlWebpackPlugin({
+      template: './templates/index.ejs'
     })
   ],
   resolve: {
