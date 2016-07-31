@@ -4,7 +4,10 @@ var webpack = require('webpack');
 var HOTRELOAD_PORT = process.env.npm_package_config_hotreload || 3004;
 var GRAPHQL_PORT = process.env.npm_package_config_graphql || 3002;
 
-module.exports = new Config().extend('webpack.dev.config.js').merge({
+module.exports = new Config().extend({'webpack.dev.config.js': config => {
+  config.module.loaders.shift();
+  return config;
+}}).merge({
   entry: [
     `webpack-dev-server/client?http://localhost:${HOTRELOAD_PORT}`,
     'webpack/hot/only-dev-server'
@@ -17,5 +20,14 @@ module.exports = new Config().extend('webpack.dev.config.js').merge({
         GRAPHQL_PORT: JSON.stringify(GRAPHQL_PORT)
       }
     })
-  ]
+  ],
+  module: {
+    loaders: [
+      {
+        loaders: ['react-hot', 'babel-loader'],
+        test: /\.jsx?$/,
+        exclude: /(node_modules|bower_components)/
+      }
+    ]
+  }
 });
