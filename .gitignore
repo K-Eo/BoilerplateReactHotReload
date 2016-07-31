@@ -1,0 +1,5 @@
+config/
+node_modules/
+playground/
+public/
+npm-debug.log
