@@ -53,11 +53,6 @@ module.exports = new Config().merge({
         loader: 'babel-loader',
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/
-      },
-      {
-        test: /\.css$/,
-        loader: 'style!css?modules',
-        include: /flexboxgrid/
       }
     ]
   },
