@@ -4,7 +4,7 @@ class App extends Component {
   render(): Any {
     return (
       <div>
-        <p>Boilerplate with React, GraphQL, Redux, Mocha & Sass.</p>
+        <p>Boilerplate with React, Redux, Mocha & Sass</p>
       </div>
     );
   }
