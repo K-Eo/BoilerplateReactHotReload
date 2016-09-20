@@ -1,6 +1,6 @@
 # React Boilerplate
 
-Boilerplate with React, GraphQL, Redux, Mocha & Sass.
+#### Boilerplate with React, Redux, Sass, jQuery, Jest and Hot-Reload.
 
 ## Requirements
 
@@ -11,33 +11,33 @@ Boilerplate with React, GraphQL, Redux, Mocha & Sass.
 ## Install
 
 ```
-git clone https://github.com/K-Eo/F4.git
-cd F4
+git clone https://github.com/K-Eo/BoilerplateReactHotReload.git
+cd BoilerplateReactHotReload
 npm install
+```
+Wait to NPM install, then run the next command:
+```
 npm start
 ```
-Navegar: http://localhost:3000
+Open you browser and go to http://localhost:3000. Now you can see your app running.
+
+In the commands section you can see more options to bundle your app.
 
 ## Commands
 
-Compile production bundle:
+Compile for production:
 ```
 npm start
 ```
 
-Compile development bundle:
+Compile for development preview:
+```
+npm run preview
+```
+
+Compile for development with Hot Reload:
 ```
 npm run dev
-```
-
-Compile development bundle with watch:
-```
-npm run dev:watch
-```
-
-Compile development with Hot Module Reload:
-```
-npm run dev:hot
 ```
 
 Run tests:
@@ -45,9 +45,12 @@ Run tests:
 npm test
 ```
 
-Run tests with watch:
+## CSS Frameworks
+
+Install any css Framework via NPM and import it in the main.jsx file:
 ```
-npm run test:watch
+import 'style!script!<framework-name>/main.css';
 ```
 
-
+## License
+MIT

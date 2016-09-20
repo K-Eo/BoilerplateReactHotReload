@@ -1,7 +1,7 @@
 {
   "name": "react-boilerplate",
   "version": "0.0.0",
-  "description": "Boilerplate with React, Redux, Sass, jQuery & Jest",
+  "description": "Boilerplate with React, Redux, Sass, jQuery, Jest & Hot-Reload",
   "main": "./scripts/production.js",
   "config": {
     "express": 3000,
