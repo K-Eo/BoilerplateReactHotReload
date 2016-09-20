@@ -1,11 +1,14 @@
 const webpack = require('webpack');
 const express = require('express');
 const util = require('./utils/util');
-const config = require('../webpack.dev.config');
+const config = require('./config/webpack.config');
 
 const app = express();
 const PORT = process.env.PORT || process.env.npm_package_config_express || 3000;
 
+/**
+ * Express configuration
+ */
 app.use(function(req, res, next) {
   if (req.headers['x-forwarded-proto'] === 'https') {
     res.redirect('http://' + req.hostname + req.url);
@@ -16,17 +19,20 @@ app.use(function(req, res, next) {
 
 app.use(express.static('public'));
 
+/**************
+ * Main entry *
+ **************/
+
 util.handleExit();
 util.clear();
 
-console.log('Build for Development Preview');
-console.log();
+console.log('Build for Development Preview\n');
 
 util.clean().then(function() {
   return util.copyAssets();
 }).then(function() {
   return new Promise(function(resolve, reject) {
-    const compiler = webpack(config);
+    const compiler = webpack(config.previewConfig());
     process.stdout.write('Compiling...');
     compiler.run(function(error, stats) {
       process.stdout.clearLine();

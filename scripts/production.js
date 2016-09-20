@@ -1,11 +1,14 @@
 const webpack = require('webpack');
 const express = require('express');
 const util = require('./utils/util');
-const config = require('../webpack.prod.config');
+const config = require('./config/webpack.config');
 
-var app = express();
+const app = express();
 const PORT = process.env.PORT || process.env.npm_package_config_express || 3000;
 
+/**
+ * Express configuration
+ */
 app.use(function(req, res, next) {
   if (req.headers['x-forwarded-proto'] === 'https') {
     res.redirect('http://' + req.hostname + req.url);
@@ -16,6 +19,10 @@ app.use(function(req, res, next) {
 
 app.use(express.static('public'));
 
+/**************
+ * Main Entry *
+ **************/
+
 util.handleExit();
 util.clear();
 
@@ -25,7 +32,7 @@ util.clean().then(function() {
   return util.copyAssets();
 }).then(function() {
   return new Promise(function(resolve, reject) {
-    const compiler = webpack(config);
+    const compiler = webpack(config.productionConfig());
     process.stdout.write('Compiling...');
     compiler.run(function(error, stats) {
       process.stdout.clearLine();
@@ -45,6 +52,7 @@ util.clean().then(function() {
           colors: true
         }));
       }
+
     });
   });
 }).then(function(stats) {
@@ -56,6 +64,6 @@ util.clean().then(function() {
     console.log('\n');
     console.log(stats);
     console.log('\n');
-    console.log('App is ready');
+    console.log('App is ready and running on default port %s.', PORT);
   });
 }).catch(function() {});

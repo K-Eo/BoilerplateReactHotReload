@@ -1,11 +1,12 @@
 const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
-const config = require('../webpack.hotreload.config');
 const util = require('./utils/util');
+const config = require('./config/webpack.config');
+const WebpackDevServer = require('webpack-dev-server');
 
 const DEV_PORT = process.env.npm_package_config_dev || 3000;
 
-const compiler = webpack(config);
+const conf = config.devConfig(DEV_PORT);
+const compiler = webpack(conf);
 
 /**
  * Handle compiler events
@@ -42,8 +43,8 @@ compiler.plugin('done', function(stats) {
 const devServer = new WebpackDevServer(
   compiler,
   {
-    publicPath: config.output.publicPath,
-    contentBase: './public/',
+    publicPath: conf.output.publicPath,
+    contentBase: conf.output.path,
     hot: true,
     quiet: true,
     watchOptions: {
@@ -53,8 +54,14 @@ const devServer = new WebpackDevServer(
   }
 );
 
+/**************
+ * Main Entry *
+ **************/
+
 util.handleExit();
 util.clear();
+
+console.log('Build for Development with Hot-Reload\n');
 
 /**
  * Clean and copy assets to public directory
@@ -75,7 +82,3 @@ util.clean().then(function() {
     }
   );
 }).catch(function() {});
-
-/**
- * Start dev server
- */
