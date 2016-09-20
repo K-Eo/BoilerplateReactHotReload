@@ -6,7 +6,7 @@ import appReducer from 'appReducer';
 
 const globalInitialState = {};
 
-export const configure = (initialState = globalInitialState) => {
+export const configure = (initialState = globalInitialState): Store => {
 
   const reducer = redux.combineReducers({
     app: appReducer
