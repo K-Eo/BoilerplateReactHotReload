@@ -5,10 +5,10 @@ import Route from 'react-router/lib/Route';
 import Router from 'react-router/lib/Router';
 import hashHistory from 'react-router/lib/hashHistory';
 
-import configure from 'configureStore';
 import 'style!css!sass!applicationStyles';
 
 import App from 'App';
+import configure from 'configureStore';
 
 const store = configure();
 
