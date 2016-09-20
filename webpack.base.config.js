@@ -28,7 +28,7 @@ module.exports = new Config().merge({
       jQuery: 'jquery'
     }),
     new HtmlWebpackPlugin({
-      template: './templates/index.ejs'
+      template: './app/templates/index.ejs'
     })
   ],
   resolve: {
