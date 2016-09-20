@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "node ./scripts/dev.js",
-    "dev:preview": "node ./scripts/dev.preview.js",
+    "preview": "node ./scripts/preview.js",
     "start": "node ./scripts/production.js",
     "test": "jest --watch"
   },
