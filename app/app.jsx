@@ -1,10 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// var {Provider} = require('react-redux');
-// var {Route, Router, IndexRoute, hashHistory} = require('react-router');
+import {Provider} from 'react-redux';
+import Route from 'react-router/lib/Route';
+import Router from 'react-router/lib/Router';
+import hashHistory from 'react-router/lib/hashHistory';
 
-// App css
-require('style!css!sass!applicationStyles');
+import configure from 'configureStore';
+import 'style!css!sass!applicationStyles';
+
+import App from 'App';
+
+const store = configure();
 
 ReactDOM.render(
-  <p>Boilerplate with React, GraphQL, Redux, Mocha & Sass.</p>, document.getElementById('app'));
+  <Provider store={store}>
+    <Router history={hashHistory}>
+      <Route path="/" component={App}/>
+    </Router>
+  </Provider>,
+  document.getElementById('app')
+);

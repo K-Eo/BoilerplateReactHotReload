@@ -9,7 +9,7 @@
     "hotreload": 3004
   },
   "scripts": {
-    "assets": "echo '# Copy assets' && cp -r ./assets/. ./public",
+    "assets": "echo '# Copy assets' && cp -r ./app/assets/. ./public",
     "build": "echo '# Build production' && webpack -p --config ./webpack.prod.config.js",
     "build:development": "webpack --config ./webpack.dev.config.js",
     "clean": "echo '# Clean public/' && rimraf public/*",
