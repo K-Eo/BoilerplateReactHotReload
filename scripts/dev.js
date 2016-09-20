@@ -4,25 +4,6 @@ const config = require('../webpack.hotreload.config');
 const util = require('./utils/util');
 
 const DEV_PORT = process.env.npm_package_config_dev || 3000;
-let isFirstClear = true;
-
-function clearConsole() {
-  process.stdout.write(isFirstClear ? '\x1bc' : '\x1b[2J\x1b[0f');
-  isFirstClear = false;
-}
-
-clearConsole();
-
-/**
- * Clean and copy assets to public directory
- */
-util.clean().then(function() {
-  return util.copyAssets();
-}).then(function() {
-  console.log();
-  console.log('Compiling...');
-  return null;
-}).catch(function() {});
 
 const compiler = webpack(config);
 
@@ -30,12 +11,12 @@ const compiler = webpack(config);
  * Handle compiler events
  */
 compiler.plugin('invalid', function() {
-  clearConsole();
+  util.clear();
   console.log('Compiling...');
 });
 
 compiler.plugin('done', function(stats) {
-  clearConsole();
+  util.clear();
   const hasErrors = stats.hasErrors();
   const hasWarnings = stats.hasWarnings();
 
@@ -72,34 +53,29 @@ const devServer = new WebpackDevServer(
   }
 );
 
+util.handleExit();
+util.clear();
+
+/**
+ * Clean and copy assets to public directory
+ */
+util.clean().then(function() {
+  return util.copyAssets();
+}).then(function() {
+  devServer.listen(
+    DEV_PORT,
+    function(error) {
+      if (error) {
+        console.log(error);
+        return;
+      }
+      console.log(util.green('Server OK'));
+      console.log();
+      console.log('Compiling...');
+    }
+  );
+}).catch(function() {});
+
 /**
  * Start dev server
  */
-devServer.listen(
-  DEV_PORT,
-  function(error) {
-    if (error) {
-      console.log(error);
-      return;
-    }
-    console.log(util.green('Server OK'));
-  }
-);
-
-/**
- * Handle Exit
- */
-if (process.platform === 'win32') {
-  const rl = require('readline').createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-
-  rl.on('SIGINT', function() {
-    process.emit('SIGINT');
-  });
-}
-
-process.on('SIGINT', function() {
-  process.exit();
-});
