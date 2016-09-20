@@ -22,6 +22,7 @@ try {
  */
 const baseConfig = {
   entry: [
+    'script!jquery/dist/jquery.js',
     path.join(dirname, '/app/main.jsx')
   ],
   output: {
@@ -60,6 +61,9 @@ const baseConfig = {
         exclude: /(node_modules|bower_components)/
       }
     ]
+  },
+  externals: {
+    jquery: 'jQuery'
   }
 };
 
