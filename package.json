@@ -10,8 +10,8 @@
   "scripts": {
     "build": "echo '# Build production' && webpack -p --config ./webpack.prod.config.js",
     "build:development": "webpack --config ./webpack.dev.config.js",
-    "dev": "npm run build:development && npm run server:development ",
-    "dev:hot": "node ./scripts/dev.hr.js",
+    "dev": "node ./scripts/dev.js",
+    "dev:preview" : "node ./scripts/dev.preview.js",
     "server:development": "node server.dev.js",
     "server:production": "echo '# Start server' && node server.production.js",
     "start": "echo '# Production' && npm run clean -s && npm run assets -s && npm run build -s && npm run server:production -s",
