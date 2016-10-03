@@ -31,6 +31,7 @@ compiler.plugin('done', function(stats) {
     return;
   }
 
+  console.log('Build for Development with Hot-Reload\n');
   console.log(util.green('Compilation OK'));
   console.log();
   console.log('Go to http://localhost:%s', DEV_PORT);

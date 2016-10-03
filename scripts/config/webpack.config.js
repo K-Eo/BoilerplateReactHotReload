@@ -22,7 +22,6 @@ try {
  */
 const baseConfig = {
   entry: [
-    'script!jquery/dist/jquery.js',
     path.join(dirname, '/app/main.jsx')
   ],
   output: {
@@ -31,10 +30,6 @@ const baseConfig = {
     publicPath: '/'
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery'
-    }),
     new HtmlWebpackPlugin({
       template: path.join(dirname, '/app/templates/index.ejs')
     })
@@ -59,29 +54,8 @@ const baseConfig = {
         loader: 'babel-loader',
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/
-      }, {
-        test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=10000&mimetype=application/font-woff'
-      }, {
-        test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=10000&mimetype=application/font-woff'
-      }, {
-        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
-      }, {
-        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file'
-      }, {
-        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=10000&mimetype=image/svg+xml'
-      }, {
-        test: /\.(jpe?g|png|gif|svg)$/i,
-        loader: 'url?limit=10000!img?progressive=true'
       }
     ]
-  },
-  externals: {
-    jquery: 'jQuery'
   }
 };
 
