@@ -122,6 +122,8 @@ exports.devConfig = function(port) {
     }
   );
 
+  dev.devtool = 'cheap-module-eval-source-map';
+
   return dev;
 };
 
