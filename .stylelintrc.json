@@ -1,0 +1,14 @@
+{
+  "rules": {
+    "color-hex-case": "lower",
+    "color-hex-length": "long",
+    "color-no-invalid-hex": true,
+    "color-named": "always-where-possible",
+    "declaration-colon-space-before": "never",
+    "declaration-colon-space-after": "always",
+    "block-opening-brace-space-before": "always",
+    "selector-class-pattern": "^[a-z]+(-[a-z]+)*$",
+    "declaration-block-no-duplicate-properties": true,
+    "declaration-block-no-redundant-longhand-properties": true
+  }
+}

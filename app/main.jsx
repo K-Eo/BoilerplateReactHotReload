@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import Route from 'react-router/lib/Route';
 import Router from 'react-router/lib/Router';
 import hashHistory from 'react-router/lib/hashHistory';
