@@ -2,6 +2,9 @@ const path = require('path');
 const webpack = require('webpack');
 const envFile =  require('node-env-file');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const network = require('../utils/network');
+
+const defaultIP = network.getDefaultIP();
 
 /**
  * Get the root path
@@ -105,7 +108,7 @@ exports.devConfig = function(port) {
   let dev = baseConfig;
 
   dev.entry.push(
-    `webpack-dev-server/client?http://localhost:${port}`,
+    `webpack-dev-server/client?http://${defaultIP}:${port}`,
     'webpack/hot/only-dev-server'
   );
 
