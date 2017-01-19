@@ -1,0 +1,11 @@
+app/assets
+app/styles
+app/templates
+app/tests
+
+scripts
+
+public
+
+node_modules
+.git
