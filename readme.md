@@ -1,6 +1,6 @@
 # React Boilerplate
 
-#### Boilerplate with React, Redux, Sass, jQuery, Jest and Hot-Reload.
+#### Boilerplate with React, Redux, Sass, Jest and Hot-Reload.
 
 ## Requirements
 
@@ -21,7 +21,7 @@ npm start
 ```
 Open you browser and go to http://localhost:3000. Now you can see your app running.
 
-In the commands section you can see more options to bundle your app.
+Follow the next section to see more options to build your app.
 
 ## Commands
 
@@ -47,9 +47,9 @@ npm test
 
 ## CSS Frameworks
 
-Install any css Framework via NPM and import it in the main.jsx file:
+Install any css Framework via NPM and then import it in the main.jsx file:
 ```
-import 'style!script!<framework-name>/main.css';
+import 'style!css!<framework-name>/main.css';
 ```
 
 ## License
