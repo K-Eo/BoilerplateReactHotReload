@@ -12,7 +12,8 @@
     "preview": "node ./scripts/preview.js",
     "start": "node ./scripts/production.js",
     "test": "jest",
-    "lint": "eslint app/ --ext .jsx,.js && stylelint app/styles/**/*.scss"
+    "lint": "eslint app/ --ext .jsx,.js && stylelint app/styles/**/*.scss",
+    "clean": "rimraf public/"
   },
   "private": true,
   "author": "Diego Lopez Garcia <aud0l@hotmail.com>",
