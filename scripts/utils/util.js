@@ -1,7 +1,8 @@
-const ncp = require('ncp').ncp;
-const rimraf = require('rimraf');
+var chalk = require('chalk');
+var rimraf = require('rimraf');
+var ncp = require('ncp').ncp;
 
-let isFirstClear = true;
+var isFirstClear = true;
 
 /**
  * Clear the terminal
@@ -18,7 +19,7 @@ exports.clear = function() {
  */
 exports.handleExit = function() {
   if (process.platform === 'win32') {
-    const rl = require('readline').createInterface({
+    var rl = require('readline').createInterface({
       input: process.stdin,
       output: process.stdout
     });
@@ -37,7 +38,7 @@ exports.handleExit = function() {
  * Renders green text
  * @type {string}
  */
-const green = exports.green = function(text) {
+var green = exports.green = function(text) {
   return `\u001B[1m\u001B[32m${text}\u001B[2m\u001B[37m`;
 };
 
@@ -45,7 +46,7 @@ const green = exports.green = function(text) {
  * Renders red text
  * @type {string}
  */
-const red = exports.red = function(text) {
+var red = exports.red = function(text) {
   return `\u001B[1m\u001B[31m${text}\u001B[2m\u001B[37m`;
 };
 
@@ -63,18 +64,38 @@ exports.yellow = function(text) {
  * @return {Promise}
  */
 exports.clean = function() {
-  const cleanPromise = new Promise(function(resolve, reject) {
-    process.stdout.write('Cleaning public/ directory...');
+  var cleanPromise = new Promise(function(resolve, reject) {
+
+    process.stdout.write(
+      chalk.white.bgBlue.bold('  CLEANING  ')
+    );
+
     rimraf('public/*', function(error) {
+
       process.stdout.clearLine();
       process.stdout.cursorTo(0);
+
       if (error) {
-        console.log(red('Clean ERROR'));
-        console.log(error);
+
+        console.log(
+          '%s %s %s',
+          chalk.white.bgRed.bold('  ERROR  '),
+          chalk.white.bold('Clean'),
+          chalk.white('public/')
+        );
+        console.error(error);
         reject();
+
       } else {
-        console.log(green('Clean OK'));
+
+        console.log(
+          '%s %s %s',
+          chalk.white.bgGreen.bold('  OK  '),
+          chalk.white.bold('Clean'),
+          chalk.white('public/')
+        );
         resolve();
+
       }
     });
   });
@@ -87,18 +108,38 @@ exports.clean = function() {
  * @return {Promise}
  */
 exports.copyAssets = function() {
-  const copyPromise = new Promise(function(resolve, reject) {
-    process.stdout.write('Copying assets to public directory...');
+  var copyPromise = new Promise(function(resolve, reject) {
+
+    process.stdout.write(
+      chalk.white.bgBlue.bold('  COPYING  ')
+    );
+
     ncp('./app/assets/', './public', function(error) {
+
       process.stdout.clearLine();
       process.stdout.cursorTo(0);
+
       if (error) {
-        console.log(red('Assets  ERROR'));
-        console.log('Error on copy assets %s', error);
+
+        console.log(
+          '%s %s %s',
+          chalk.white.bgRed.bold('  ERROR  '),
+          chalk.white.bold('Copy'),
+          chalk.white('Assets')
+        );
+        console.error(error);
         reject();
+
       } else {
-        console.log(green('Assets  OK'));
+
+        console.log(
+          '%s %s %s',
+          chalk.white.bgGreen.bold('  OK  '),
+          chalk.white.bold('Copy'),
+          chalk.white('Assets')
+        );
         resolve();
+
       }
     });
   });
