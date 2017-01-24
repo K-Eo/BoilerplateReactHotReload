@@ -1,21 +1,34 @@
 import * as redux from 'redux';
 import thunk from 'redux-thunk';
+import reduxImmutable from 'redux-immutable-state-invariant';
 
 import appReducer from 'appReducer';
 // import <reducer> from '<path>';
 
 const globalInitialState = {};
 
-export const configure = (initialState = globalInitialState): Store => {
+export const configure = (initialState = globalInitialState) => {
 
   const reducer = redux.combineReducers({
     app: appReducer
   });
 
-  const compose = redux.compose(
-    redux.applyMiddleware(thunk),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
-  );
+  let compose = null;
+
+  if (process.env.NODE_ENV === 'production') {
+
+    compose = redux.compose(
+      redux.applyMiddleware(thunk)
+    );
+
+  } else {
+
+    compose = redux.compose(
+      redux.applyMiddleware(thunk, reduxImmutable()),
+      window.devToolsExtension ? window.devToolsExtension() : f => f
+    );
+
+  }
 
   return redux.createStore(reducer, initialState, compose);
 };
