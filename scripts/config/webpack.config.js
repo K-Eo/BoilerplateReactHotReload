@@ -13,10 +13,16 @@ const defaultIP = network.getDefaultIP();
 const dirname = process.cwd();
 
 /**
+ * Get process enviroment
+ * @type {string}
+ */
+const NODE_ENV = process.env.NODE_ENV || 'development';
+
+/**
  * Parse the configuration variables
  */
 try {
-  envFile(path.join(dirname, 'config/' + process.env.NODE_ENV + '.env'));
+  envFile(path.join(dirname, 'config/' + NODE_ENV + '.env'));
 } catch (e) {}
 
 /**
@@ -35,6 +41,11 @@ const baseConfig = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(dirname, '/app/templates/index.ejs')
+    }),
+    new webpack.DefinePlugin({
+      'process.env' : {
+        NODE_ENV: JSON.stringify(NODE_ENV)
+      }
     })
   ],
   resolve: {
@@ -141,11 +152,6 @@ exports.productionConfig = function() {
       },
       output: {
         comments: false
-      }
-    }),
-    new webpack.DefinePlugin({
-      'process.env' : {
-        NODE_ENV: JSON.stringify('production')
       }
     })
   );
