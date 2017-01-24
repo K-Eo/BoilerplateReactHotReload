@@ -7,8 +7,8 @@ import hashHistory from 'react-router/lib/hashHistory';
 
 import 'style!css!sass!applicationStyles';
 
-import App from 'App';
-import configure from 'configureStore';
+import App from './components/App';
+import configure from './store/configureStore';
 
 const store = configure();
 

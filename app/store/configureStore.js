@@ -2,8 +2,7 @@ import * as redux from 'redux';
 import thunk from 'redux-thunk';
 import reduxImmutable from 'redux-immutable-state-invariant';
 
-import appReducer from 'appReducer';
-// import <reducer> from '<path>';
+import appReducer from '../reducers/appReducer';
 
 const globalInitialState = {};
 

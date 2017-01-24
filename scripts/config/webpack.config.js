@@ -40,11 +40,7 @@ const baseConfig = {
   resolve: {
     root: dirname,
     modulesDirectories: [
-      'node_modules',
-      './app/actions',
-      './app/components',
-      './app/reducers',
-      './app/store'
+      'node_modules'
     ],
     alias: {
       applicationStyles: path.join(dirname, '/app/styles/app.scss')
