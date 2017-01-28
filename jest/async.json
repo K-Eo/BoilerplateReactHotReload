@@ -1,0 +1,4 @@
+{
+  "testEnvironment": "node",
+  "testRegex": "(\/__tests__\/.*async)\\.jsx?$"
+}
